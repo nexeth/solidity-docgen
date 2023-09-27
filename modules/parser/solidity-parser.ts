@@ -9,6 +9,7 @@ import { BaseASTNode, ASTVisitor } from "@solidity-parser/parser/dist/src/ast-ty
 export class SolidityParser {
   private static config: parser.ParseOptions = {
     loc: true,
+    range: true,
   };
 
   /**

@@ -10,7 +10,8 @@
     "lint": "eslint . "
   },
   "dependencies": {
-    "@solidity-parser/parser": "^0.16.1"
+    "@solidity-parser/parser": "^0.16.1",
+    "handlebars": "^4.7.8"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.7.0",
