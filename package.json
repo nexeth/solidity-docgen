@@ -1,11 +1,16 @@
 {
-  "name": "@nexeth/bun-template",
+  "name": "@nexeth/solidity-docgen",
   "module": "index.ts",
   "type": "module",
+  "license": "MIT",
+  "author": "mfbevan",
   "scripts": {
     "start": "bun index.ts",
     "test": "bun test",
     "lint": "eslint . "
+  },
+  "dependencies": {
+    "@solidity-parser/parser": "^0.16.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.7.0",
