@@ -1,4 +1,4 @@
-import { ParsedContracts } from "./parser";
+import { ParsedContract } from "./parser";
 
 export interface SolidityDocgenInterface {
   /**
@@ -6,5 +6,5 @@ export interface SolidityDocgenInterface {
    * @param contracts The contract AST to generate documentation for
    * @returns The generated documentation as a string
    */
-  generate(contracts: ParsedContracts): string;
+  generate(contracts: ParsedContract): string;
 }

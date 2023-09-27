@@ -1,6 +1,7 @@
 import * as fs from "fs";
 
 import * as parser from "@solidity-parser/parser";
+import { BaseASTNode, ASTVisitor } from "@solidity-parser/parser/dist/src/ast-types";
 
 /**
  * A service for parsing Solidity code and files into an AST.
@@ -27,5 +28,14 @@ export class SolidityParser {
   public static parseFile(path: string) {
     const code = fs.readFileSync(path, "utf8");
     return parser.parse(code, this.config);
+  }
+
+  /**
+   * Visits each node in the given Solidity AST and calls the corresponding visitor function.
+   * @param ast The Solidity AST to visit.
+   * @param visitor The visitor function to call for each node in the AST.
+   */
+  public static visit(ast: BaseASTNode, visitor: ASTVisitor) {
+    return parser.visit(ast, visitor);
   }
 }

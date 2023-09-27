@@ -1,3 +1,3 @@
 import * as parser from "@solidity-parser/parser";
 
-export type ParsedContracts = ReturnType<typeof parser.parse>;
+export type ParsedContract = ReturnType<typeof parser.parse>;
