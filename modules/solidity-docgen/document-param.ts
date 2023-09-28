@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FunctionDefinition, VariableDeclaration } from "@solidity-parser/parser/dist/src/ast-types";
+import { EventDefinition, FunctionDefinition, VariableDeclaration } from "@solidity-parser/parser/dist/src/ast-types";
 
 import { ParamTemplateData } from "../../types";
 
@@ -8,7 +8,10 @@ import { ParamTemplateData } from "../../types";
  * @param func The function in which the parameter is used
  * @returns The parsed parameter documentation
  */
-export const documentParam = (paramMatch: RegExpMatchArray, func: FunctionDefinition): ParamTemplateData => {
+export const documentParam = (
+  paramMatch: RegExpMatchArray,
+  func: FunctionDefinition | EventDefinition
+): ParamTemplateData => {
   const paramName = paramMatch[1];
   const comment = paramMatch[2];
   const param = func.parameters.find((_param) => _param.name === paramName);
@@ -40,11 +43,12 @@ export const documentReturn = (returnMatch: RegExpMatchArray, func: FunctionDefi
  */
 export const getTypeName = (variable: VariableDeclaration): string => {
   const storageLocation = variable.storageLocation ? ` ${variable.storageLocation}` : "";
+  const indexed = variable.isIndexed ? " indexed" : "";
 
   if (variable.typeName?.type === "ArrayTypeName") {
     // @ts-ignore
     return `${variable.typeName.baseTypeName.name}[]${storageLocation}`;
   }
   // @ts-ignore
-  return `${variable.typeName?.name}${storageLocation}`;
+  return `${variable.typeName?.name}${storageLocation}${indexed}`;
 };
