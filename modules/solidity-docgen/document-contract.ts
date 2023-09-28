@@ -25,8 +25,6 @@ export const documentContract = (context: DocumentationContext): string => {
     events,
   };
 
-  console.log({ templateData });
-
   const templatedContract = context.config?.template.contract(templateData);
   return contractCleanup(templatedContract);
 };

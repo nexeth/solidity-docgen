@@ -36,13 +36,76 @@ describe("documentContract", () => {
 
   test("should return a string", () => {
     const output = documentContract(context);
-    console.log(output);
-
     expect(typeof output).toBe("string");
   });
 
   test("should contain the contract name", () => {
     const output = documentContract(context);
     expect(output).toContain("# TestContract");
+  });
+
+  test("should contain the contract notice", () => {
+    const output = documentContract(context);
+    expect(output).toContain("This is a test contract notice");
+  });
+
+  test("should contain the contract devdoc", () => {
+    const output = documentContract(context);
+    expect(output).toContain("This is a test contract");
+  });
+
+  test("should contain the contract author", () => {
+    const output = documentContract(context);
+    expect(output).toContain("mfbevan");
+  });
+
+  test("should contain the function name", () => {
+    const output = documentContract(context);
+    expect(output).toContain("## testFunction");
+  });
+
+  test("should contain the function devdoc", () => {
+    const output = documentContract(context);
+    expect(output).toContain("This is a test function");
+  });
+
+  test("should contain the function param", () => {
+    const output = documentContract(context);
+    expect(output).toContain("This is a test parameter");
+  });
+
+  test("should contain the function array param", () => {
+    const output = documentContract(context);
+    expect(output).toContain("This is a test array parameter");
+  });
+
+  test("should contain the function return", () => {
+    const output = documentContract(context);
+    expect(output).toContain("This is a test return value");
+  });
+
+  test("should contain the event name", () => {
+    const output = documentContract(context);
+    expect(output).toContain("## TestEvent");
+  });
+
+  test("should contain the event devdoc", () => {
+    const output = documentContract(context);
+    expect(output).toContain("This is a test event");
+  });
+
+  test("should contain the event param", () => {
+    const output = documentContract(context);
+    expect(output).toContain("This is a test parameter");
+  });
+
+  test("should contain the event array param", () => {
+    const output = documentContract(context);
+    expect(output).toContain("This is a test array parameter");
+  });
+
+  test("should contain the event indexed param", () => {
+    const output = documentContract(context);
+    expect(output).toContain("indexed");
   });
 });

@@ -1,14 +1,14 @@
 ### {{name}}
+{{#if signature}}
+\`\`\`solidity
+{{{signature}}}\`\`\`
+{{/if}}
+
 {{#if natspec.notice}}
 {{{natspec.notice}}}
 {{/if}}
 {{#if natspec.dev}}
 _{{{natspec.dev}}}_
-{{/if}}
-
-{{#if signature}}
-\`\`\`solidity
-{{{signature}}}\`\`\`
 {{/if}}
 
 {{#if natspec.params}}
