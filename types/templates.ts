@@ -1,5 +1,6 @@
 export interface Template {
   func: HandlebarsTemplateDelegate;
+  event: HandlebarsTemplateDelegate;
 }
 
 export interface ParamTemplateData {
@@ -23,4 +24,11 @@ export interface FunctionTemplateData {
   natspec: NatspecTemplateData;
   params?: ParamTemplateData[];
   returns?: ParamTemplateData[];
+}
+
+export interface EventTemplateData {
+  name: string;
+  signature?: string;
+  natspec: NatspecTemplateData;
+  params?: ParamTemplateData[];
 }

@@ -1,7 +1,7 @@
-import { FunctionDefinition } from "@solidity-parser/parser/dist/src/ast-types";
+import { EventDefinition } from "@solidity-parser/parser/dist/src/ast-types";
 import { beforeAll, describe, expect, test } from "bun:test";
 
-import { SolidityParser, documentFunction } from "../modules";
+import { SolidityParser, documentEvent } from "../modules";
 
 import { mockMarkdownContext } from "./mock";
 
@@ -10,58 +10,52 @@ const testContract = `
 pragma solidity ^0.8.0;
 
 contract TestContract {
-   event TestEvent(bool indexed _param, uint256[] _arrayParam);
+  event TestEvent(bool indexed _param, uint256[] _arrayParam);
 
-   event NoParamsEvent();
+  event NoParamsEvent();
 
-   /// @dev This is a test function
+  /// @dev This is a test event
+  /// @param _param This is a test parameter
+  /// @param _arrayParam This is a test array parameter
+  event TestEvent(bool indexed _param, uint256[] _arrayParam);
 }
 `;
 
-describe("documentFunction", () => {
+describe("documentEvent", () => {
   const context = mockMarkdownContext(testContract);
-  const functions: FunctionDefinition[] = [];
+  const events: EventDefinition[] = [];
 
   beforeAll(() => {
     SolidityParser.visit(context.parsedContract, {
-      FunctionDefinition: (node) => {
-        functions.push(node);
+      EventDefinition: (node) => {
+        events.push(node);
       },
     });
   });
 
   test("should return a string", () => {
-    const output = documentFunction(functions[0], context);
+    const output = documentEvent(events[0], context);
     expect(typeof output).toBe("string");
   });
 
-  test("should return the name of the function", () => {
-    const output = documentFunction(functions[0], context);
-    expect(output).toContain("### pureFunction");
+  test("should contain the event name", () => {
+    const output = documentEvent(events[0], context);
+    expect(output).toContain("TestEvent");
   });
 
-  test("should return the function signature", () => {
-    const output = documentFunction(functions[0], context);
-    expect(output).toInclude("function pureFunction() public pure returns (bool)");
+  test("should contain the event signature", () => {
+    const output = documentEvent(events[0], context);
+    expect(output).toContain("event TestEvent(bool indexed _param, uint256[] _arrayParam)");
   });
 
-  test("should return the function natspec", () => {
-    const output = documentFunction(functions[8], context);
-    expect(output).toInclude("This is a test function");
+  test("should contain the event natspec", () => {
+    const output = documentEvent(events[2], context);
+    expect(output).toContain("This is a test event");
   });
 
-  test("should return the function parameters", () => {
-    const output = documentFunction(functions[8], context);
-    expect(output).toInclude("| _param | bool | This is a test parameter |");
-  });
-
-  test("should return the function return values", () => {
-    const output = documentFunction(functions[8], context);
-    expect(output).toInclude("[0] | bool | This is a test return value |");
-  });
-
-  test("should return typed return values", () => {
-    const output = documentFunction(functions[9], context);
-    expect(output).toInclude("| namedReturn | bool | This is a test return value |");
+  test("should contain the event params", () => {
+    const output = documentEvent(events[2], context);
+    expect(output).toContain("This is a test parameter");
+    expect(output).toContain("This is a test array parameter");
   });
 });
