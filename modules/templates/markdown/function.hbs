@@ -8,8 +8,7 @@ _{{{natspec.dev}}}_
 
 {{#if signature}}
 \`\`\`solidity
-{{{signature}}}
-\`\`\`
+{{{signature}}}\`\`\`
 {{/if}}
 
 {{#if natspec.params}}
@@ -30,4 +29,4 @@ _{{{natspec.dev}}}_
 {{#each returns}}
 | {{#if name}}{{name}}{{else}}[{{@index}}]{{/if}} | {{type}} | {{{description}}} |
 {{/each}}
-{{/if}}`
+{{/if}}

@@ -1,0 +1,22 @@
+# {{name}}
+{{#if natspec.author}}
+by _{{{natspec.author}}}_
+{{/if}}
+
+{{#if natspec.notice}}
+{{{natspec.notice}}}
+{{/if}}
+
+{{#if natspec.dev}}
+{{{natspec.dev}}}
+{{/if}}
+
+## Functions
+{{#each functions}}
+{{this}}
+{{/each}}
+
+## Events
+{{#each events}}
+{{this}}
+{{/each}}

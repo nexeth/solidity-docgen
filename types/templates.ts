@@ -1,6 +1,7 @@
 export interface Template {
   func: HandlebarsTemplateDelegate;
   event: HandlebarsTemplateDelegate;
+  contract: HandlebarsTemplateDelegate;
 }
 
 export interface ParamTemplateData {
@@ -31,4 +32,17 @@ export interface EventTemplateData {
   signature?: string;
   natspec: NatspecTemplateData;
   params?: ParamTemplateData[];
+}
+
+export interface ContractTemplateData {
+  name: string;
+  natspec: NatspecTemplateData;
+  /**
+   * Already documented functions as a string
+   */
+  functions?: string[];
+  /**
+   * Already documented events as a string
+   */
+  events?: string[];
 }
