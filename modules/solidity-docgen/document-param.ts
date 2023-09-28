@@ -21,10 +21,12 @@ export const documentParam = (paramMatch: RegExpMatchArray, func: FunctionDefini
 };
 
 export const documentReturn = (returnMatch: RegExpMatchArray, func: FunctionDefinition): ParamTemplateData => {
-  const returnName = returnMatch[1];
-  const returnParam = func.returnParameters?.find((_param) => _param.name === returnName);
+  const returnParam =
+    func.returnParameters?.length === 1
+      ? func.returnParameters[0]
+      : func.returnParameters?.find((_param) => _param.name === returnMatch[1]);
+  const returnName = returnParam?.name || "";
 
-  console.log({ returnParam, returnMatch });
   if (returnParam) {
     return { name: returnName, type: getTypeName(returnParam), description: returnMatch[1] };
   }
@@ -37,7 +39,6 @@ export const documentReturn = (returnMatch: RegExpMatchArray, func: FunctionDefi
  * @returns The type name of the variable/parameter including the storage location
  */
 export const getTypeName = (variable: VariableDeclaration): string => {
-  console.log(variable);
   const storageLocation = variable.storageLocation ? ` ${variable.storageLocation}` : "";
 
   if (variable.typeName?.type === "ArrayTypeName") {

@@ -89,14 +89,34 @@ describe("documentFunction", () => {
 
   test("should return the name of the function", () => {
     const output = documentFunction(functions[0], context);
-    expect(output).toContain("### testFunction");
+    expect(output).toContain("### pureFunction");
   });
 
-  test.only("should return the function signature", () => {
+  test("should return the function signature", () => {
+    const output = documentFunction(functions[0], context);
+    expect(output).toInclude(`\`\`\`solidity
+function pureFunction() public pure returns (bool)
+\`\`\``);
+  });
+
+  test("should return the function natspec", () => {
+    const output = documentFunction(functions[8], context);
+    expect(output).toInclude("This is a test function");
+  });
+
+  test("should return the function parameters", () => {
+    const output = documentFunction(functions[8], context);
+    expect(output).toInclude("| _param | bool | This is a test parameter |");
+  });
+
+  test("should return the function return values", () => {
+    const output = documentFunction(functions[9], context);
+    expect(output).toInclude("[0] |  | This is a test return value |");
+  });
+
+  test("should return typed return values", () => {
     const output = documentFunction(functions[9], context);
     console.log(output);
-    expect(output).toInclude(`\`\`\`solidity
-function testFunction(bool _param, uint256[] memory _arrayParam) public returns (bool)
-\`\`\``);
+    expect(output).toInclude("| namedReturn | bool | This is a test return value |");
   });
 });

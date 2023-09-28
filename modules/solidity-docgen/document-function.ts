@@ -22,7 +22,6 @@ export const documentFunctionNatspec = (
 
   for (let i = start - 1; i >= 0; i--) {
     const line = context.rawContract.split("\n")[i];
-    console.log(line);
     if (line?.trim().startsWith("//")) {
       comments.unshift(line.trim().replace("//", "").trim());
     } else {
