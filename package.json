@@ -1,6 +1,9 @@
 {
   "name": "@nexeth/solidity-docgen",
-  "module": "index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "browser": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "license": "MIT",
   "author": "mfbevan",
@@ -8,7 +11,7 @@
     "start": "bun index.ts",
     "test": "bun test",
     "lint": "eslint . ",
-    "build:templates": "bun handlebars"
+    "build:tsc": "tsc --outDir ./dist"
   },
   "dependencies": {
     "@solidity-parser/parser": "^0.16.1",
