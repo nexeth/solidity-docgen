@@ -23,6 +23,7 @@ export const documentContract = (context: DocumentationContext): string => {
     natspec,
     functions,
     events,
+    emoji: context.config?.emoji,
   };
 
   const templatedContract = context.config?.template.contract(templateData);

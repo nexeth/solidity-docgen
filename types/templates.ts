@@ -45,4 +45,8 @@ export interface ContractTemplateData {
    * Already documented events as a string
    */
   events?: string[];
+  /**
+   * Enable emoji output in the template
+   */
+  emoji?: boolean;
 }

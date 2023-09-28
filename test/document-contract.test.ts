@@ -108,4 +108,24 @@ describe("documentContract", () => {
     const output = documentContract(context);
     expect(output).toContain("indexed");
   });
+
+  test("should contain emojis if the flag is enabled", () => {
+    const emojiContext = Object.assign({}, context);
+    emojiContext.config.emoji = true;
+
+    const output = documentContract(emojiContext);
+    expect(output).toContain("## ⚡ Functions");
+    expect(output).toContain("## 🎟️ Events");
+
+    console.log(output);
+  });
+
+  test("should not contain emojis if the flag is disabled", () => {
+    const emojiContext = Object.assign({}, context);
+    emojiContext.config.emoji = false;
+
+    const output = documentContract(emojiContext);
+    expect(output).toContain("## Functions");
+    expect(output).toContain("## Events");
+  });
 });

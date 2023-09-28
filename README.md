@@ -1,5 +1,7 @@
 # @nexeth/solidity-docgen
 
+`@nexeth/solidity-docgen` is a tool for generating formatted Solidity Smart Contract documentation programmatically.
+
 ## Getting Started
 
 ### Install bun
@@ -14,7 +16,7 @@ To lint your code:
 bun lint
 ```
 
-### Tesing
+### Testing
 
 To run tests:
 

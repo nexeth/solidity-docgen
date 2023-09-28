@@ -20,4 +20,9 @@ export interface DocumentationConfig {
    * The template definition to use
    */
   template: Template;
+
+  /**
+   * Enable emoji output in the template
+   */
+  emoji?: boolean;
 }
