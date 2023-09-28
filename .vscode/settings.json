@@ -11,5 +11,8 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "thunder-client.saveToWorkspace": true,
   "thunder-client.workspaceRelativePath": ".vscode",
-  "cSpell.words": ["Docgen"]
+  "cSpell.words": ["Docgen"],
+  "[handlebars]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
 }
